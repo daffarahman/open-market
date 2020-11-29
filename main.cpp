@@ -10,7 +10,7 @@
 #define PROGRAM_VERSION "4.0.2"
 
 #define WINDOW_WIDTH 480
-#define WINDOW_HEIGHT 240
+#define WINDOW_HEIGHT 300
 
 #define TEXTCTRL_SIZE wxSize(200, 30)
 
@@ -26,11 +26,17 @@ public:
 	MainFrame(const wxString &title, wxSize size);
 
 private:
+	void OnProceed(wxCommandEvent &event);
 	void OnAbout(wxCommandEvent &event);
 	void OnExit(wxCommandEvent &event);
 };
 
 wxIMPLEMENT_APP(MainApp);
+
+enum 
+{
+	ID_Proceed = wxID_HIGHEST + 1
+};
 
 bool MainApp::OnInit()
 {
@@ -42,8 +48,12 @@ bool MainApp::OnInit()
 MainFrame::MainFrame(const wxString &title, wxSize size)
 	: wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, size)
 {
+	SetMinSize(wxSize(WINDOW_WIDTH, WINDOW_HEIGHT));	
+	SetMaxSize(wxSize(WINDOW_WIDTH, WINDOW_HEIGHT));
+
 	///creating menu and menubar///
 	wxMenu *file_menu = new wxMenu;
+	file_menu->Append(ID_Proceed, "&Proceed");
 	file_menu->Append(wxID_EXIT);
 	
 	wxMenu *help_menu = new wxMenu;
@@ -62,8 +72,21 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 	wxStaticText *m_stxt_title = new wxStaticText(this, wxID_ANY, PROGRAM_NAME_LONG, wxPoint(10, 10), wxDefaultSize);
 	
 	// inputs
-	wxStaticText *m_stxt_label_product = new wxStaticText(this, wxID_ANY, "product name", wxPoint(10, 50), wxDefaultSize);
-	wxTextCtrl *m_txtc_input_product = new wxTextCtrl(this, wxID_ANY, "", wxPoint(120, 50), TEXTCTRL_SIZE);
+	wxStaticText *m_stxt_label_product = new wxStaticText(this, wxID_ANY, "product", wxPoint(10, 50), wxDefaultSize);
+	wxTextCtrl *m_txtc_input_product = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 50), TEXTCTRL_SIZE);
+
+	wxStaticText *m_stxt_label_price = new wxStaticText(this, wxID_ANY, "price", wxPoint(10,90), wxDefaultSize);
+	wxTextCtrl *m_txtc_input_price = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 90), TEXTCTRL_SIZE);	
+
+	wxStaticText *m_stxt_label_amount = new wxStaticText(this, wxID_ANY, "amount", wxPoint(10, 130), wxDefaultSize);
+	wxTextCtrl *m_txtc_input_amount = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 130), TEXTCTRL_SIZE);
+
+	wxButton *m_btn_proceed = new wxButton(this, wxID_ANY, "proceed", wxPoint(340, 50), wxDefaultSize);
+}
+
+void MainFrame::OnProceed(wxCommandEvent &event)
+{
+	wxMessageBox("Product added to basket!", "Thank You!", wxOK | wxICON_INFORMATION);
 }
 
 void MainFrame::OnAbout(wxCommandEvent &event)
