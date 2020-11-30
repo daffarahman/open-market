@@ -31,6 +31,8 @@ public:
 	wxTextCtrl *m_txtc_input_amount = nullptr;
 
 private:
+	void fConvertError();
+	void OnClear(wxCommandEvent &event);
 	void OnProceed(wxCommandEvent &event);
 	void OnAbout(wxCommandEvent &event);
 	void OnExit(wxCommandEvent &event);
@@ -40,7 +42,8 @@ wxIMPLEMENT_APP(MainApp);
 
 enum 
 {
-	ID_Proceed = wxID_HIGHEST + 1
+	ID_Proceed = wxID_HIGHEST + 1,
+	ID_Clear = ID_Proceed + 1
 };
 
 bool MainApp::OnInit()
@@ -59,6 +62,7 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 	///creating menu and menubar///
 	wxMenu *file_menu = new wxMenu;
 	file_menu->Append(ID_Proceed, "&Proceed\tCtrl-P");
+	file_menu->Append(ID_Clear, "&Clear");
 	file_menu->AppendSeparator();
 	file_menu->Append(wxID_EXIT);
 	
@@ -72,6 +76,7 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 	SetMenuBar(menu_bar);
 
 	Bind(wxEVT_MENU, &MainFrame::OnProceed, this, ID_Proceed);	
+	Bind(wxEVT_MENU, &MainFrame::OnClear, this, ID_Clear);
 	Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
 	Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
 
@@ -89,13 +94,29 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 	m_txtc_input_amount = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 130), TEXTCTRL_SIZE);
 }
 
+void MainFrame::fConvertError()
+{
+	wxLogMessage("Error Converting please check your input");
+}
+
+void MainFrame::OnClear(wxCommandEvent &event)
+{
+	m_txtc_input_product->SetValue(wxString(""));
+	m_txtc_input_price->SetValue(wxString(""));
+	m_txtc_input_amount->SetValue(wxString(""));
+}
+
 void MainFrame::OnProceed(wxCommandEvent &event)
 {
-	wxMessageBox(
-		wxString(m_txtc_input_product->GetValue()),
-		"Thank you for buying",
-		wxOK | wxICON_INFORMATION
-	);
+	double d_price = 0;
+	long i_amount = 0;
+
+	wxString wxd_price(m_txtc_input_price->GetValue());
+	wxString wxi_amount(m_txtc_input_amount->GetValue());
+	if(!wxd_price.ToDouble(&d_price) || !wxi_amount.ToLong(&i_amount))
+	{
+		fConvertError();
+	}
 }
 
 void MainFrame::OnAbout(wxCommandEvent &event)
