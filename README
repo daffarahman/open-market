@@ -23,32 +23,6 @@ and Text based interface
 
 Why using wxWidgets?
 
-Well, the reason is that wxWidgets is cross-platform  
-and native across-devices, so every component will look exactly  
-like the system does  
-
-
-How to install?
-
-Make sure you have all of the dependencies installed.
-to install wxWidgets you can read the documentation
-on the official site on how to install wxWidgets
-on your system
-
-if you want use to the Makfile and use a custom compilers
-make sure to modify the Makefile and flags.
-but I recommend to use GNU C++ Compiler (g++)
-
-o LINUX :
-	if you use "ubuntu based" distro, you can follow this easily
-	i don't know if this will work on another based distro (arch, ect) 
-	if you want to use g++ just install build-essential
-	it includes GNU Compiler Collection (gcc, g++, ...)
-	and make utility to compile the program
-	so what you need?
-		o build-essential
-		o libgtk-3-dev (im not sure if you need this)
-	after that, go to folder where you extract this and
-	run 'make'
-
-
+Well, the reason is that wxWidgets is cross-platform
+and native across-devices, so every component will look exactly
+like the system does
