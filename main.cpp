@@ -13,6 +13,12 @@
 
 #define TEXTCTRL_SIZE wxSize(200, 30)
 
+wxString get_info()
+{
+	wxString info = wxString::Format(wxT("%s\nVersion %s"), PROGRAM_NAME_LONG, PROGRAM_VERSION);
+	return info; 
+}
+
 class MainApp : public wxApp
 {
 public:
@@ -127,7 +133,7 @@ void MainFrame::OnProceed(wxCommandEvent &event)
 
 void MainFrame::OnAbout(wxCommandEvent &event)
 {
-	wxMessageBox(PROGRAM_VERSION, "Food Market Version", wxOK | wxICON_INFORMATION);
+	wxMessageBox(get_info(), "About Food Market", wxOK | wxICON_INFORMATION);
 }
 
 void MainFrame::OnExit(wxCommandEvent &event)
