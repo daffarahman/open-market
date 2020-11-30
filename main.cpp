@@ -6,7 +6,6 @@
 
 #define PROGRAM_NAME "market"
 #define PROGRAM_NAME_LONG "Open Food Market"
-#define PROGRAM_DESCRIPTION "Open Food Market created by Daffa Rahman"
 #define PROGRAM_VERSION "4.0.2"
 
 #define WINDOW_WIDTH 400
@@ -31,7 +30,7 @@ public:
 	wxTextCtrl *m_txtc_input_amount = nullptr;
 
 private:
-	void fConvertError();
+	void ConvertError();
 	void OnClear(wxCommandEvent &event);
 	void OnProceed(wxCommandEvent &event);
 	void OnAbout(wxCommandEvent &event);
@@ -94,7 +93,7 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 	m_txtc_input_amount = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 130), TEXTCTRL_SIZE);
 }
 
-void MainFrame::fConvertError()
+void MainFrame::ConvertError()
 {
 	wxLogMessage("Error Converting please check your input");
 }
@@ -110,18 +109,25 @@ void MainFrame::OnProceed(wxCommandEvent &event)
 {
 	double d_price = 0;
 	long i_amount = 0;
+	double d_total = 0;
 
-	wxString wxd_price(m_txtc_input_price->GetValue());
-	wxString wxi_amount(m_txtc_input_amount->GetValue());
-	if(!wxd_price.ToDouble(&d_price) || !wxi_amount.ToLong(&i_amount))
-	{
-		fConvertError();
-	}
+	if(!m_txtc_input_price->GetValue().ToDouble(&d_price) 
+	|| !m_txtc_input_amount->GetValue().ToLong(&i_amount))
+	{ConvertError();return;}
+
+	d_total = d_price * (double)i_amount;
+
+	wxCharBuffer buffer = m_txtc_input_product->GetValue().ToUTF8();
+	const char* c_product = buffer.data();
+
+	wxString message = wxString::Format(wxT("Thank you for buying %s for %.2f"), (char*)c_product, d_total);
+
+	wxMessageBox(message, "Thank You!", wxOK | wxICON_INFORMATION);
 }
 
 void MainFrame::OnAbout(wxCommandEvent &event)
 {
-	wxMessageBox(PROGRAM_DESCRIPTION, "About Food Market", wxOK | wxICON_INFORMATION);
+	wxMessageBox(PROGRAM_VERSION, "Food Market Version", wxOK | wxICON_INFORMATION);
 }
 
 void MainFrame::OnExit(wxCommandEvent &event)
