@@ -4,9 +4,17 @@
 	#include <wx/wx.h>
 #endif
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined (__NT__)
+    #define DETECTED_OS "Windows"
+#elif __linux__
+    #define DETECTED_OS "Linux"
+#else
+    #define DETECTED_OS "Supported System"
+#endif
+
 #define PROGRAM_NAME "market"
 #define PROGRAM_NAME_LONG "Open Food Market"
-#define PROGRAM_VERSION "4.0.3"
+#define PROGRAM_VERSION "4.0.31"
 
 #define WINDOW_WIDTH 400
 #define WINDOW_HEIGHT 300
@@ -15,7 +23,7 @@
 
 wxString get_info()
 {
-	wxString info = wxString::Format(wxT("%s\nVersion %s"), PROGRAM_NAME_LONG, PROGRAM_VERSION);
+	wxString info = wxString::Format(wxT("%s\nVersion %s\nfor %s"), PROGRAM_NAME_LONG, PROGRAM_VERSION, DETECTED_OS);
 	return info; 
 }
 
