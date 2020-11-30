@@ -24,6 +24,11 @@ class MainFrame : public wxFrame
 {
 public:
 	MainFrame(const wxString &title, wxSize size);
+	
+	// define some inputs
+	wxTextCtrl *m_txtc_input_product = nullptr;
+	wxTextCtrl *m_txtc_input_price = nullptr;
+	wxTextCtrl *m_txtc_input_amount = nullptr;
 
 private:
 	void OnProceed(wxCommandEvent &event);
@@ -75,18 +80,22 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 	
 	// inputs
 	wxStaticText *m_stxt_label_product = new wxStaticText(this, wxID_ANY, "product", wxPoint(10, 50), wxDefaultSize);
-	wxTextCtrl *m_txtc_input_product = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 50), TEXTCTRL_SIZE);
+	m_txtc_input_product = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 50), TEXTCTRL_SIZE);
 
 	wxStaticText *m_stxt_label_price = new wxStaticText(this, wxID_ANY, "price", wxPoint(10,90), wxDefaultSize);
-	wxTextCtrl *m_txtc_input_price = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 90), TEXTCTRL_SIZE);	
+	m_txtc_input_price = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 90), TEXTCTRL_SIZE);	
 
 	wxStaticText *m_stxt_label_amount = new wxStaticText(this, wxID_ANY, "amount", wxPoint(10, 130), wxDefaultSize);
-	wxTextCtrl *m_txtc_input_amount = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 130), TEXTCTRL_SIZE);
+	m_txtc_input_amount = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 130), TEXTCTRL_SIZE);
 }
 
 void MainFrame::OnProceed(wxCommandEvent &event)
 {
-	wxMessageBox("Product added to basket!", "Thank You!", wxOK | wxICON_INFORMATION);
+	wxMessageBox(
+		wxString(m_txtc_input_product->GetValue()),
+		"Thank You!",
+		wxOK | wxICON_INFORMATION
+	);
 }
 
 void MainFrame::OnAbout(wxCommandEvent &event)
