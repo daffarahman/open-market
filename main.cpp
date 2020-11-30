@@ -6,7 +6,7 @@
 
 #define PROGRAM_NAME "market"
 #define PROGRAM_NAME_LONG "Open Food Market"
-#define PROGRAM_VERSION "4.0.2"
+#define PROGRAM_VERSION "4.0.3"
 
 #define WINDOW_WIDTH 400
 #define WINDOW_HEIGHT 300
