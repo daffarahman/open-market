@@ -9,7 +9,7 @@
 #define PROGRAM_DESCRIPTION "Open Food Market created by Daffa Rahman"
 #define PROGRAM_VERSION "4.0.2"
 
-#define WINDOW_WIDTH 480
+#define WINDOW_WIDTH 400
 #define WINDOW_HEIGHT 300
 
 #define TEXTCTRL_SIZE wxSize(200, 30)
@@ -54,6 +54,7 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 	///creating menu and menubar///
 	wxMenu *file_menu = new wxMenu;
 	file_menu->Append(ID_Proceed, "&Proceed");
+	file_menu->AppendSeparator();
 	file_menu->Append(wxID_EXIT);
 	
 	wxMenu *help_menu = new wxMenu;
@@ -64,7 +65,8 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 	menu_bar->Append(help_menu, "&Help");
 	
 	SetMenuBar(menu_bar);
-	
+
+	Bind(wxEVT_MENU, &MainFrame::OnProceed, this, ID_Proceed);	
 	Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
 	Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
 
@@ -80,8 +82,6 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 
 	wxStaticText *m_stxt_label_amount = new wxStaticText(this, wxID_ANY, "amount", wxPoint(10, 130), wxDefaultSize);
 	wxTextCtrl *m_txtc_input_amount = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 130), TEXTCTRL_SIZE);
-
-	wxButton *m_btn_proceed = new wxButton(this, wxID_ANY, "proceed", wxPoint(340, 50), wxDefaultSize);
 }
 
 void MainFrame::OnProceed(wxCommandEvent &event)
