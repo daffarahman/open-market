@@ -58,7 +58,7 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 
 	///creating menu and menubar///
 	wxMenu *file_menu = new wxMenu;
-	file_menu->Append(ID_Proceed, "&Proceed");
+	file_menu->Append(ID_Proceed, "&Proceed\tCtrl-P");
 	file_menu->AppendSeparator();
 	file_menu->Append(wxID_EXIT);
 	
@@ -93,7 +93,7 @@ void MainFrame::OnProceed(wxCommandEvent &event)
 {
 	wxMessageBox(
 		wxString(m_txtc_input_product->GetValue()),
-		"Thank You!",
+		"Thank you for buying",
 		wxOK | wxICON_INFORMATION
 	);
 }
