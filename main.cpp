@@ -4,19 +4,9 @@
 	#include <wx/wx.h>
 #endif
 
-// Detect Host OS
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined (__NT__)
-    #define DETECTED_OS "Windows"
-#elif __linux__
-    #define DETECTED_OS "Linux"
-#else
-    #define DETECTED_OS "Supported System"
-#endif
-
-
-#define PROGRAM_NAME "OFM"
+#define PROGRAM_NAME "ofm"
 #define PROGRAM_NAME_LONG "Open Food Market"
-#define PROGRAM_VERSION "4.0.33"
+#define PROGRAM_VERSION "4.0.34"
 #define CODE_NAME "Denali"
 
 #define WINDOW_WIDTH 400
@@ -26,7 +16,7 @@
 
 wxString get_info()
 {
-	wxString info = wxString::Format(wxT("%s\nVersion %s (%s)\nRunning on %s"), PROGRAM_NAME_LONG, PROGRAM_VERSION, CODE_NAME, DETECTED_OS);
+	wxString info = wxString::Format(wxT("%s\nVersion %s (%s)"), PROGRAM_NAME_LONG, PROGRAM_VERSION, CODE_NAME);
 	return info; 
 }
 
