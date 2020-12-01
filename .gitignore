@@ -1,3 +1,6 @@
+# vim or emacs
+*.lock~
+
 # app name
 main
 market

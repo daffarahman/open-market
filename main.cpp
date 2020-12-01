@@ -4,15 +4,11 @@
 	#include <wx/wx.h>
 #endif
 
-#define PROGRAM_NAME "ofm"
-#define PROGRAM_NAME_LONG "Open Food Market"
-#define PROGRAM_VERSION "4.0.34"
-#define CODE_NAME "Denali"
+// local header files
+#include "version.h"
+#include "window.h"
+#include "component.h"
 
-#define WINDOW_WIDTH 400
-#define WINDOW_HEIGHT 300
-
-#define TEXTCTRL_SIZE wxSize(200, -1)
 
 wxString get_info()
 {
