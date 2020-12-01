@@ -9,13 +9,6 @@
 #include "window.h"
 #include "component.h"
 
-
-wxString get_info()
-{
-	wxString info = wxString::Format(wxT("%s\nVersion %s (%s)"), PROGRAM_NAME_LONG, PROGRAM_VERSION, CODE_NAME);
-	return info; 
-}
-
 class MainApp : public wxApp
 {
 public:
@@ -131,7 +124,7 @@ void MainFrame::OnProceed(wxCommandEvent &event)
 
 void MainFrame::OnAbout(wxCommandEvent &event)
 {
-	wxMessageBox(get_info(), "About Food Market", wxOK | wxICON_INFORMATION);
+	wxMessageBox(wxString(get_version_info()), "About Food Market", wxOK | wxICON_INFORMATION);
 }
 
 void MainFrame::OnExit(wxCommandEvent &event)
