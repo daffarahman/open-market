@@ -16,7 +16,7 @@
 
 #define PROGRAM_NAME "OFM"
 #define PROGRAM_NAME_LONG "Open Food Market"
-#define PROGRAM_VERSION "4.0.32"
+#define PROGRAM_VERSION "4.0.33"
 #define CODE_NAME "Denali"
 
 #define WINDOW_WIDTH 400
@@ -47,7 +47,7 @@ public:
 	wxTextCtrl *m_txtc_input_amount = nullptr;
 
 private:
-	void ConvertError();
+	void OnError(const wxString &info);
 	void OnClear(wxCommandEvent &event);
 	void OnProceed(wxCommandEvent &event);
 	void OnAbout(wxCommandEvent &event);
@@ -111,9 +111,9 @@ MainFrame::MainFrame(const wxString &title, wxSize size)
 	m_txtc_input_amount = new wxTextCtrl(this, wxID_ANY, "", wxPoint(110, 130), TEXTCTRL_SIZE);
 }
 
-void MainFrame::ConvertError()
+void MainFrame::OnError(const wxString &message)
 {
-	wxLogMessage("Error Converting please check your input");
+	wxMessageBox(message, "Error", wxOK | wxICON_ERROR);
 }
 
 void MainFrame::OnClear(wxCommandEvent &event)
@@ -131,7 +131,7 @@ void MainFrame::OnProceed(wxCommandEvent &event)
 
 	if(!m_txtc_input_price->GetValue().ToDouble(&d_price) 
 	|| !m_txtc_input_amount->GetValue().ToLong(&i_amount))
-	{ConvertError();return;}
+	{OnError("Error Converting, please check your input");return;}
 
 	d_total = d_price * (double)i_amount;
 
