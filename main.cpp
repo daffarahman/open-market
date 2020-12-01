@@ -22,7 +22,7 @@
 #define WINDOW_WIDTH 400
 #define WINDOW_HEIGHT 300
 
-#define TEXTCTRL_SIZE wxSize(200, 30)
+#define TEXTCTRL_SIZE wxSize(200, -1)
 
 wxString get_info()
 {
