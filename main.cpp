@@ -72,6 +72,7 @@ bool MainApp::OnInit()
 MainFrame::MainFrame(const wxString &title, wxSize size)
 	: wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, size)
 {
+	Center();
 	SetMinSize(wxSize(WINDOW_WIDTH, WINDOW_HEIGHT));	
 	SetMaxSize(wxSize(WINDOW_WIDTH, WINDOW_HEIGHT));
 
