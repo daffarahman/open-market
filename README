@@ -26,3 +26,18 @@ Why using wxWidgets?
 Well, the reason is that wxWidgets is cross-platform
 and native across-devices, so every component will look exactly
 like the system does
+
+
+NOTE
+
+Makefile is coming soon
+
+or you can use this command to compile the source
+g++ src/main.cpp `wx-config --cxxflags --libs std` -Iinclude -o ./bin/<debug or release>/main
+
+but first you need to create this directory
+
+bin/
+bin/debug/ or bin/release/
+
+
