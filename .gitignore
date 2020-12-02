@@ -1,3 +1,7 @@
+# custom thing
+*.how
+bin/
+
 # vim or emacs
 *.lock~
 
