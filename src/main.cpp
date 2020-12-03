@@ -99,6 +99,8 @@ void MainFrame::OnClear(wxCommandEvent &event)
 	m_txtc_input_product->SetValue(wxString(""));
 	m_txtc_input_price->SetValue(wxString(""));
 	m_txtc_input_amount->SetValue(wxString(""));
+
+	m_txtc_input_product->SetFocus();
 }
 
 void MainFrame::OnProceed(wxCommandEvent &event)
