@@ -7,7 +7,7 @@
 #define PROGRAM_NAME "ofm"
 #define PROGRAM_NAME_LONG "Open Food Market"
 
-#define PROGRAM_VERSION "4.0.36"
+#define PROGRAM_VERSION "4.0.37"
 
 #define CODE_NAME "Denali"
 
