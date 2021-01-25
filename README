@@ -3,12 +3,9 @@
 +------------------+
 
 	A GUI Market Application
-
 	Originally developed and mantained by Daffa Rahman
-
-	Every code written here is fully open source 
-	and can be copied and distributed freely for any
-	non-commercial or commercial purposes.
+	
+	License: https://github.com/daffarahman/open-market/blob/main/LICENSE
 
 
 What is Open Food Market?
@@ -19,7 +16,6 @@ with faster performance and cross-platform
 
 the older version (1.0 until 3.0) uses Windows Batch File
 and Text based interface
-
 
 Why using wxWidgets?
 
@@ -35,9 +31,7 @@ Makefile is coming soon
 or you can use this command to compile the source
 g++ src/main.cpp `wx-config --cxxflags --libs std` -Iinclude -o ./bin/<debug or release>/main
 
-but first you need to create this directory
+but first you need to create this directory on the root of repo
 
 bin/
 bin/debug/ or bin/release/
-
-
